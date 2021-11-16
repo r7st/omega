@@ -125,66 +125,42 @@ char lgetc()
 }
 
 
-int ynq()
+static int ynq_helper( win )
+WINDOW *win;
 {
   char p='*'; /* the user's choice; start with something impossible
                * to prevent a loop. */
   while ((p != 'N') && (p != 'Y') && (p != 'Q') && (p != ESCAPE) &&
          (p != EOF) && (p != ' '))
-    p = wgetch(Msgw);
+    p = wgetch(win);
   switch (p) {
-    case 'Y': wprintw(Msgw,"yes. "); break;
-    case 'N': wprintw(Msgw,"no. "); break;
+    case 'Y': wprintw(win,"yes. "); break;
+    case 'N': wprintw(win,"no. "); break;
     
     case ESCAPE: p = 'Q'; /* fall through to 'q' */
     case ' ': p = 'Q';    /* fall through to 'q' */
-    case 'Q': wprintw(Msgw,"quit. "); break;
+    case 'Q': wprintw(win,"quit. "); break;
     default: assert( p == EOF );
     }
-  wrefresh(Msgw);
-  return(tolower(p));
+  wrefresh(win);
+  return tolower(p);
+}
+
+int ynq()
+{
+  return(ynq_helper(Msgw));
 }
 
 
 int ynq1()
 {
-  char p='*'; /* the user's choice; start with something impossible
-               * to prevent a loop. */
-  while ((p != 'N') && (p != 'Y') && (p != 'Q') && (p != ESCAPE) &&
-          (p != ' ') && (p != EOF))
-    p = wgetch(Msg1w);
-  switch (p) {
-    case 'Y': wprintw(Msg1w,"yes. "); break;
-    case 'N': wprintw(Msg1w,"no. "); break;
-    
-    case ESCAPE: p = 'Q'; /* fall through to 'q' */
-    case ' ': p = 'Q';    /* fall through to 'q' */
-    case 'Q': wprintw(Msg1w,"quit. "); break;
-    default: assert( p == EOF );
-    }
-  wrefresh(Msg1w);
-  return(tolower(p));
+  return(ynq_helper(Msg1w));
 }
 
 
 int ynq2()
 {
-  char p='*'; /* the user's choice; start with something impossible
-               * to prevent a loop. */
-  while ((p != 'N') && (p != 'Y') && (p != 'Q') && (p != ESCAPE) &&
-          (p != ' ') && (p != EOF))
-    p = wgetch(Msg2w);
-  switch (p) {
-    case 'Y': wprintw(Msg2w,"yes. "); break;
-    case 'N': wprintw(Msg2w,"no. "); break;
-    
-    case ESCAPE: p = 'Q'; /* fall through to 'q' */
-    case ' ': p = 'Q';    /* fall through to 'q' */
-    case 'Q': wprintw(Msg2w,"quit. "); break;
-    default: assert( p == EOF );
-    }
-  wrefresh(Msg2w);
-  return(tolower(p));
+  return(ynq_helper(Msg2w));
 }
     
 /* puts up a morewait to allow reading if anything in top two lines */
