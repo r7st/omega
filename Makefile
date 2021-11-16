@@ -2,13 +2,15 @@
 # the value of LIBDIR should be the same as OMEGALIB in defs.h
 BINDIR = ${PREFIX}/bin
 LIBDIR = ${PREFIX}/share/omega
+# the value of SAVEDIR should be the same as SAVEDIR in defs.h
+SAVEDIR = "${LIBDIR}/saves"
 
 # One of these should be uncommented, as appropriate, unless your compiler
 # does it for you.  You can test this by simply trying to 'make' omega -
 # it will fail if none of them are defined.  If you do uncomment
 # one, make sure you comment out the other definition of CFLAGS lower down
 
-CFLAGS = -O2 -pipe -Wno-return-type -fstack-protector-strong -fno-strict-aliasing  -DBSD -DOMEGALIB=\"${LIBDIR}/\"  -Wl,-rpath=/usr/local/lib
+CFLAGS = -O2 -pipe -Wno-return-type -fstack-protector-strong -fno-strict-aliasing  -DBSD -DOMEGALIB=\"${LIBDIR}/\" -DSAVEDIR=\"${SAVEDIR}/\" -Wl,-rpath=/usr/local/lib
 #CFLAGS = -DSYSV -O
 # I also had to define -cckr (K&R style C) for system V
 #CFLAGS = -DMSDOS -O
@@ -51,6 +53,7 @@ omega: $(OBJ)
 install: omega
 	mkdir -p $(BINDIR)
 	mkdir -p $(LIBDIR)
+	mkdir -p $(SAVEDIR)
 	chown games:games omega
 	cp omega $(BINDIR)
 	chmod 4711 $(BINDIR)/omega
