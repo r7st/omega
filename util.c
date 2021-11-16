@@ -652,10 +652,10 @@ char *prefix,*s;
 int confirmation()
 {
   switch(random_range(4)) {
-  case 0:  mprint("Are you sure? [yn] "); break;
-  case 1:  mprint("Certain about that? [yn] "); break;
-  case 2:  mprint("Do you really mean it? [yn] "); break;
-  case 3:  mprint("Confirm that, would you? [yn] "); break;
+  case 0:  mprint("Are you sure? [Y|N] "); break;
+  case 1:  mprint("Certain about that? [Y|N] "); break;
+  case 2:  mprint("Do you really mean it? [Y|N] "); break;
+  case 3:  mprint("Confirm that, would you? [Y|N] "); break;
   }
   return(ynq()=='y');
 }

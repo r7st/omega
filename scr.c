@@ -129,20 +129,20 @@ int ynq()
 {
   char p='*'; /* the user's choice; start with something impossible
                * to prevent a loop. */
-  while ((p != 'n') && (p != 'y') && (p != 'q') && (p != ESCAPE) &&
+  while ((p != 'N') && (p != 'Y') && (p != 'Q') && (p != ESCAPE) &&
          (p != EOF) && (p != ' '))
     p = wgetch(Msgw);
   switch (p) {
-    case 'y': wprintw(Msgw,"yes. "); break;
-    case 'n': wprintw(Msgw,"no. "); break;
+    case 'Y': wprintw(Msgw,"yes. "); break;
+    case 'N': wprintw(Msgw,"no. "); break;
     
-    case ESCAPE: p = 'q'; /* fall through to 'q' */
-    case ' ': p = 'q';    /* fall through to 'q' */
-    case 'q': wprintw(Msgw,"quit. "); break;
+    case ESCAPE: p = 'Q'; /* fall through to 'q' */
+    case ' ': p = 'Q';    /* fall through to 'q' */
+    case 'Q': wprintw(Msgw,"quit. "); break;
     default: assert( p == EOF );
     }
   wrefresh(Msgw);
-  return(p);
+  return(tolower(p));
 }
 
 
@@ -150,20 +150,20 @@ int ynq1()
 {
   char p='*'; /* the user's choice; start with something impossible
                * to prevent a loop. */
-  while ((p != 'n') && (p != 'y') && (p != 'q') && (p != ESCAPE) &&
+  while ((p != 'N') && (p != 'Y') && (p != 'Q') && (p != ESCAPE) &&
           (p != ' ') && (p != EOF))
     p = wgetch(Msg1w);
   switch (p) {
-    case 'y': wprintw(Msg1w,"yes. "); break;
-    case 'n': wprintw(Msg1w,"no. "); break;
+    case 'Y': wprintw(Msg1w,"yes. "); break;
+    case 'N': wprintw(Msg1w,"no. "); break;
     
-    case ESCAPE: p = 'q'; /* fall through to 'q' */
-    case ' ': p = 'q';    /* fall through to 'q' */
-    case 'q': wprintw(Msg1w,"quit. "); break;
+    case ESCAPE: p = 'Q'; /* fall through to 'q' */
+    case ' ': p = 'Q';    /* fall through to 'q' */
+    case 'Q': wprintw(Msg1w,"quit. "); break;
     default: assert( p == EOF );
     }
   wrefresh(Msg1w);
-  return(p);
+  return(tolower(p));
 }
 
 
@@ -171,20 +171,20 @@ int ynq2()
 {
   char p='*'; /* the user's choice; start with something impossible
                * to prevent a loop. */
-  while ((p != 'n') && (p != 'y') && (p != 'q') && (p != ESCAPE) &&
+  while ((p != 'N') && (p != 'Y') && (p != 'Q') && (p != ESCAPE) &&
           (p != ' ') && (p != EOF))
     p = wgetch(Msg2w);
   switch (p) {
-    case 'y': wprintw(Msg2w,"yes. "); break;
-    case 'n': wprintw(Msg2w,"no. "); break;
+    case 'Y': wprintw(Msg2w,"yes. "); break;
+    case 'N': wprintw(Msg2w,"no. "); break;
     
-    case ESCAPE: p = 'q'; /* fall through to 'q' */
-    case ' ': p = 'q';    /* fall through to 'q' */
-    case 'q': wprintw(Msg2w,"quit. "); break;
+    case ESCAPE: p = 'Q'; /* fall through to 'q' */
+    case ' ': p = 'Q';    /* fall through to 'q' */
+    case 'Q': wprintw(Msg2w,"quit. "); break;
     default: assert( p == EOF );
     }
   wrefresh(Msg2w);
-  return(p);
+  return(tolower(p));
 }
     
 /* puts up a morewait to allow reading if anything in top two lines */
